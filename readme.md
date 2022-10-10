@@ -67,7 +67,7 @@ to
 samlocal build --template dlq-tempalte.yaml
 ```
 
-to views teh queues in a terminal window, you can do the following
+to views the queues in a terminal window, you can do the following
 
 ```
 awslocal sqs list-queues
