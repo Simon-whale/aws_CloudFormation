@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template to configure a sample queue
+Parameters:
+  MySourceQueueName:
+    Type: String
+    Description: Standard Queue Name
+    Default: app-queue
+  MyDeadLetterQueueName:
+    Type: String
+    Description: Fifo Queue Name
+    Default: app-dead-letter-queue
+Resources:
+  MySourceQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName:
+        Ref: MySourceQueueName
+      RedrivePolicy:
+        deadLetterTargetArn:
+          Fn::GetAtt:
+          - MyDeadLetterQueue
+          - Arn
+        maxReceiveCount: 5
+  MyDeadLetterQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName:
+        Ref: MyDeadLetterQueueName

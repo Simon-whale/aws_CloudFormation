@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Example of building via Templates
+
+Parameters:
+  StandardQueueName:
+    Type: String
+    Description: StandardQueueName
+    Default: DemoStandardQueue
+  FifoQueueName:
+    Type: String
+    Description: Fifo Queue Name
+    Default: DemoFifoQueue.fifo
+  
+Resources:
+  MyStandardQueue: 
+    Type: AWS::SQS::Queue
+    Properties: 
+      QueueName: !Ref StandardQueueName
+  MyFifoQueue: 
+    Type: AWS::SQS::Queue
+    Properties: 
+      QueueName: !Ref FifoQueueName     
+      FifoQueue: true
+  

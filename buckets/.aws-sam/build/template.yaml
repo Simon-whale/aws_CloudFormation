@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'Example of building via Templates
+
+  '
+Parameters:
+  DeploymentStageName:
+    Description: The name of the stage for deplyment
+    Type: string
+    Default: api
+  TargetPort:
+    Description: the port that localstack runs on
+    Type: string
+    Default: '4566'
+  TargetHost:
+    Description: The host to target
+    Type: string
+    Default: host.docker.internal
+Resources:
+  Bucket:
+    Type: AWS::S3::Bucket
+    properties:
+      BucketName: simons-bucket
